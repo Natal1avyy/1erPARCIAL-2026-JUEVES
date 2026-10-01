@@ -12,4 +12,7 @@ class ProductoKwikE(ProductoKwikE):
             f"Stock: {self.stock} | "
         )
 
-    def 
+    def __eq__ (self, otro):
+        return (
+            sel.id_producto == otro.id_producto and self.descricion == otro.descricion
+        )
