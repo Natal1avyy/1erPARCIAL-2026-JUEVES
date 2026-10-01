@@ -1,18 +1,19 @@
 from datetime import date
+from Ejercicio8 import ListaEnlazada
 
 class KwikEMart:
     def __init__(self):
         self.pasillos = {
-            "Bebidas": [],
-            "Snacks": [],
-            "Conveniencia": []
+            "Bebidas": ListaEnlazada(),
+            "Snacks": ListaEnlazada(),
+            "Conveniencia": ListaEnlazada()
         }
 
     def agregar_producto(self, pasillo, producto):
         if pasillo not in self.pasillos:
-            self.pasillos[pasillo] = []
+            self.pasillos[pasillo] = ListaEnlazada()
 
-        self.pasillos[pasillo].append(producto)
+        self.pasillos[pasillo].agregar(producto)
 
     def buscar_producto(self, id_producto):
         for productos in self.pasillos.values():
@@ -32,11 +33,11 @@ class KwikEMart:
         return True
 
     def remover_producto(self, id_producto):
-        for productos in self.pasillos.values():
-            for producto in productos:
-                if producto.id_producto == id_producto:
-                    productos.remove(producto)
-                    return True
+        for lista in self.pasillos.values():
+        for producto in lista:
+            if producto.id_producto == id_producto:
+                lista.eliminar(producto)
+                return True
 
         return False
 
@@ -48,7 +49,7 @@ class KwikEMart:
             for producto in productos[:]:
                 if producto.fecha_vencimiento <= fecha_limite:
                     producto.dias_para_vencer()
-                    productos.remove(producto)
+                    lista.eliminar(producto)
                     cantidad_retirada += 1
 
         return cantidad_retirada
