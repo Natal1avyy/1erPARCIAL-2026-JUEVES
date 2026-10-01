@@ -2,7 +2,7 @@ from datetime import date
 
 class ProductoKwikE:
     def __init__ (
-        self, descricion, id_producto, fecha_vencimiento, precio, stock
+        self, descricion=str, id_producto=int , fecha_vencimiento=date, precio=float, stock=int
     ): 
     self.descricion = descricion
     self.id_producto = id_producto
@@ -26,7 +26,7 @@ class ProductoKwikE:
         dias (self.fecha_vencimiento - date.today ()).days
 
         if dias < 0:
-            print("Producto vencido.")
+            print("Producto vencido")
             self.stock = 0
-            
+
         return dias  
